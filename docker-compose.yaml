@@ -1,4 +1,15 @@
 services:
+  spring:
+    build: .
+    ports:
+      - "8008:8008"
+    networks:
+      - some-network
+    depends_on:
+      - postgres
+      - mongo
+      - schema-registry
+      - kafka
   mongo:
     image: mongo
     ports:
@@ -13,7 +24,7 @@ services:
     image: postgres
     container_name: postgres
     environment:
-      POSTGRES_USERNAME: postgres
+      POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
       POSTGRES_DB: some-database
     networks:
