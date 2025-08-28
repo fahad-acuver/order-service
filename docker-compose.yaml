@@ -27,6 +27,8 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
       POSTGRES_DB: some-database
+    volumes: # <-- ADD THIS SECTION
+      - postgres_data:/var/lib/postgresql/data
     networks:
       - some-network
     ports:
@@ -47,6 +49,7 @@ services:
     container_name: kafka
     ports:
       - "9092:9092"
+      - "29092:29092"
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
@@ -83,3 +86,5 @@ services:
 networks:
   some-network:
     driver: bridge
+volumes: # <-- ADD THIS ENTIRE SECTION AT THE BOTTOM
+  postgres_data:
