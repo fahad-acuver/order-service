@@ -1,0 +1,19 @@
+kafka:
+  brokers:
+    - kafka:29092
+
+schemaRegistry:
+  enabled: true
+  urls:
+    - http://schema-registry:8081
+
+console:
+  topicDocumentation:
+    enabled: true
+
+serdes:
+  - topicName: someTopic
+    value:
+      serde: avro
+      schemaRegistry:
+        url: http://schema-registry:8081
